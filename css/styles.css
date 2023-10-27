@@ -1,0 +1,304 @@
+header {
+    background-color: #050606;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+main {
+    background-color: #f7f4f5;
+    /* height: 1200px; */
+    width: 70%;
+    float: left;
+}
+
+aside {
+    background-color: rgb(255, 255, 255);
+    /* height: 1200px; */
+    padding: 10px 2%;
+    width: 26%;
+    float: right;
+}
+
+.profile {
+    max-width: 180px;
+
+}
+
+.aside-divide-equally {
+    display: flex;
+    flex-direction: column;
+}
+
+.clear {
+    clear: both;
+}
+
+.aside-section {
+    flex: 1;
+    /* margin-bottom: 10px; */
+    padding: 20px;
+    /* border: 1px solid #ccc;
+    border-top: 1px solid #000; */
+    border-bottom: 1px solid #ccc;
+}
+
+.key-competencies {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.keep-space li {
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+.skills {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.other-details {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    /* padding-bottom: 15px; */
+}
+
+.main-description {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.about-me {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    background-color: #D8D7D5;
+}
+
+.objective {
+    padding-right: 50px;
+    padding-left: 30px;
+    text-align: justify;
+}
+
+.Personal-description {
+    float: right
+}
+
+.work-experience {
+    background-color: #ADB3BC;
+    padding-top: 15px;
+}
+
+.vedio {
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.country {
+    background-color: #D8D7D5;
+    padding-top: 15px;
+    /* padding-bottom: 115px; */
+}
+
+.details-of-srilanka {
+    text-align: justify;
+}
+
+/*nav*/
+nav{
+    background-color: #211815;
+    padding: 20px 10px;
+}
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    text-align: center;
+}
+nav ul li{
+    display: inline-block;
+    width: 150px;
+}
+nav ul li a{
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+    transition: font-size 0.5s;
+}
+
+nav ul li a:hover{
+    text-decoration: underline;
+    font-size: 24px;
+}
+
+
+.sub_menu, .sub_sub_menu{
+    position: absolute;
+    background-color: #211815;
+    padding: 0 0;
+    /*height: 0px;
+    /*overflow: hidden;
+    transition: height 1s;*/
+    box-shadow: 0 0 10px black;
+    display: none;
+}
+ul.sub_menu li{
+    display: block;
+    padding: 10px 10px;
+}
+
+nav ul li:hover .sub_menu, nav ul li .sub_menu li:hover .sub_sub_menu{
+    display: block;
+    /*height: 150px;*/
+}
+.sub_sub_menu{
+    margin-left: 150px;
+}
+
+/*checkout page*/
+/* Add these styles to your existing styles.css or create a new CSS file */
+
+/* Styles for the Checkout Details section */
+form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+#demo {
+    color: #ff0000; /* Red color for error messages */
+    margin-top: 10px;
+}
+
+.error {
+    color: #ff0000; /* Red color for error messages */
+    font-size: 11px;
+    margin-top: 1px;
+}
+/*shopping cart*/
+#shoppingCart {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+#cartItems {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cartTotal {
+    font-weight: bold;
+}
+/*product*/
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    width: 30%;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product h3 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.product p {
+    font-size: 18px;
+}
+
+.product button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #555;
+}
+
+.left-corner {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+
+.right-corner {
+    flex: 1;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+}
+
+.set-space {
+    padding-top: 30px;
+}
+
+footer {
+    background-color: #050606;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: white;
+}
