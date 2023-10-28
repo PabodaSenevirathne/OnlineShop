@@ -70,6 +70,11 @@ function clearErrorMessages() {
         element.innerHTML = "";
     }
 
+
+
+}
+}
+
 function openPopupWindow() {
     var popupURL = "reciept.html"; // Replace with the actual URL
     var width = 600;
@@ -79,86 +84,46 @@ function openPopupWindow() {
     window.open(popupURL, "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
 }
 
+
+// Function to retrieve cart data and checkout details, then populate the receipt
+function displayCheckoutReceipt() {
+    // Retrieve cart data from localStorage
+    const cartItems = JSON.parse(localStorage.getItem("cart"));
+
+    // Retrieve checkout details from localStorage
+    const checkoutDetails = JSON.parse(localStorage.getItem("checkoutDetails"));
+
+    // Get the receipt elements
+    const cartItemsList = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+
+    // Display cart items on the receipt
+    if (cartItems && cartItems.length > 0) {
+        cartItemsList.innerHTML = "";
+        cartItems.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
+            cartItemsList.appendChild(listItem);
+        });
+    }
+
+    // Display cart total on the receipt
+    if (checkoutDetails) {
+        document.getElementById("checkoutName").textContent = checkoutDetails.name;
+        document.getElementById("checkoutPhone").textContent = checkoutDetails.phone;
+        document.getElementById("checkoutPostcode").textContent = checkoutDetails.postcode;
+        document.getElementById("checkoutAddress").textContent = checkoutDetails.address;
+        document.getElementById("checkoutCity").textContent = checkoutDetails.city;
+        document.getElementById("checkoutProvince").textContent = checkoutDetails.province;
+        document.getElementById("checkoutEmail").textContent = checkoutDetails.email;
+    }
+
+    // Calculate and display the total
+    if (cartItems) {
+        const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+        cartTotal.textContent = total;
+    }
 }
-}
 
-
-// // cart
-
-// // Variables to store cart items and total
-// const cartItems = [];
-// let cartTotal = 0;
-
-// // Function to add items to the cart
-// function addToCart(name, price) {
-//     // Check if the item is already in the cart
-//     const existingItem = cartItems.find(item => item.name === name);
-
-//     if (existingItem) {
-//         existingItem.quantity += 1;
-//     } else {
-//         cartItems.push({ name, price, quantity: 1 });
-//     }
-
-//     // Calculate and update the total
-//     cartTotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
-
-//     // Update the cart display
-//     updateCartDisplay();
-// }
-
-// // Function to update the cart display
-// function updateCartDisplay() {
-//     const cartItemsList = document.getElementById("cartItems");
-//     const cartTotalElement = document.getElementById("cartTotal");
-
-//     // Clear the existing cart items
-//     cartItemsList.innerHTML = "";
-
-//     // Add items to the cart
-//     cartItems.forEach(item => {
-//         const listItem = document.createElement("li");
-//         listItem.textContent = `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
-//         cartItemsList.appendChild(listItem);
-//     });
-
-//     // Update the total
-//     cartTotalElement.textContent = cartTotal;
-// }
-
-
-// // cart.js
-
-// // Function to update the cart on the shopping-cart.html page
-// function updateCart() {
-//     const cartItemsElement = document.getElementById("cartItems");
-//     const cartTotalElement = document.getElementById("cartTotal");
-
-//     // Check if there is a cart in localStorage
-//     if (localStorage.getItem("cart")) {
-//         const cart = JSON.parse(localStorage.getItem("cart"));
-//         cartItemsElement.innerHTML = ""; // Clear the cart items
-
-//         let total = 0;
-
-//         // Iterate through cart items and display them
-//         for (const item of cart) {
-//             const li = document.createElement("li");
-//             li.textContent = `${item.name} - $${item.price}`;
-//             cartItemsElement.appendChild(li);
-
-//             total += item.price;
-//         }
-
-//         // Update the total
-//         cartTotalElement.textContent = total.toFixed(2);
-//     } else {
-//         // If the cart is empty, display a message
-//         cartItemsElement.innerHTML = "Your cart is empty.";
-//         cartTotalElement.textContent = "0.00";
-//     }
-// }
-
-// // Call the updateCart function when the page loads
-// window.addEventListener("load", updateCart);
-
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", displayCheckoutReceipt);
