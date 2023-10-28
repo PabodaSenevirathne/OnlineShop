@@ -15,6 +15,7 @@ function addToCart(name, price) {
     // Update the cart in localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
     
+    alert("Item has been added to your cart.");
 
 }
 document.addEventListener("DOMContentLoaded", function() {
