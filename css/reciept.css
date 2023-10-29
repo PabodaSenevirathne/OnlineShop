@@ -38,7 +38,24 @@ p {
     font-size: 16px;
     text-align: center; /* Center the details */
 }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Adjust this value to control the vertical positioning */
+}
 
+#okButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#okButton:hover {
+    background-color: #45a049;
+}
 /* Style the total amount */
 #cartTotal {
     font-weight: bold;
