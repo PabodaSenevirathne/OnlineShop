@@ -1,3 +1,4 @@
+// validate function
 function validateForm() {
 
     clearErrorMessages();
@@ -16,7 +17,7 @@ function validateForm() {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Add a check to compare 'Password' and 'Confirm Password'
+    //compare 'Password' and 'Confirm Password'
     if (password !== confirmPassword) {
         displayErrorMessage("passwordValidationError", "Password and Confirm Password must match.");
         return false;
@@ -30,11 +31,12 @@ function validateForm() {
     const cvvPattern = /^\d{3}$/;
 
     let isValid = true;
+
     if (name.trim() === "") {
         displayErrorMessage("nameValidationError", "Please enter your name.");
         return false;
     } else if (phone.trim() === "") {
-        displayErrorMessage("emailValidationError", "Please enter your phone.");
+        displayErrorMessage("phoneValidationError", "Please enter your phone.");
         return false;
     } else if (postcode.trim() === "") {
         displayErrorMessage("postcodeValidationError", "Please enter your postcode.");
@@ -64,24 +66,23 @@ function validateForm() {
         displayErrorMessage("expyearValidationError", "Please enter a valid expiration Year.");
         return false;
     } else if (!cvvPattern.test(cvv)) {
-        displayErrorMessage("cvvValidationError", "Please enter a valid 3-digit CVV.");
         return false;
     }
     if (isValid) {
         saveFormDetailsToLocalStorage();
         alert("Your order has been placed! Thank you for shopping with us.");
-         // openPopupWindow();
 
     }
 
     return isValid;
 }
 
+// display error messages
 function displayErrorMessage(id, message) {
     document.getElementById(id).innerHTML = message;
 }
 
-
+// clear error messages
 function clearErrorMessages() {
     const errorElements = document.getElementsByClassName("error");
     for (const element of errorElements) {
@@ -89,18 +90,7 @@ function clearErrorMessages() {
     }
 }
 
-// function openPopupWindow() {
-//     var popupURL = "reciept.html";
-//     var width = 800;
-//     var height = 800;
-//     var left = (screen.width - width) / 2;
-//     var top = (screen.height - height) / 2;
-//     window.open(popupURL, "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
-
-//     displayCheckoutReceipt()
-// }
-
-
+// open popup window
 function openPopupWindow() {
     var popupURL = "reciept.html";
     var width = 800;
@@ -108,20 +98,16 @@ function openPopupWindow() {
     var left = (screen.width - width) / 2;
     var top = (screen.height - height) / 2;
 
-    // Calculate the total purchase amount
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const totalPurchaseAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
     if (totalPurchaseAmount < 10) {
-        // Display an error message if the total purchase amount is less than $10
         alert("The minimum purchase should be $10 or more. Please add more items to your cart.");
     } else {
-        // Open the popup window and display the receipt
         window.open(popupURL, "_blank", "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
         displayCheckoutReceipt();
     }
 }
-
 
 function saveFormDetailsToLocalStorage() {
     // Retrieve form input values
@@ -149,24 +135,20 @@ function saveFormDetailsToLocalStorage() {
 }
 
 
-// Function to retrieve cart data and checkout details, then populate the receipt
+// Function to retrieve cart data and checkout details
 function displayCheckoutReceipt() {
-    // Retrieve cart data from localStorage
     const cartItems = JSON.parse(localStorage.getItem("cart"));
 
-    // Retrieve checkout details from localStorage
     const checkoutDetails = JSON.parse(localStorage.getItem("formDetails"));
 
-    // Get the receipt elements
     const cartItemsList = document.getElementById("cartItems");
     const subTotal = document.getElementById("subTotal")
     const cartTotal = document.getElementById("cartTotal");
 
-
     const taxAmount = document.getElementById("taxAmount")
 
+    // Display an error if the cart is empty
     if (!cartItems || cartItems.length === 0) {
-        // Display an error if the cart is empty
         cartItemsList.innerHTML = "";
         cartTotal.textContent = "";
         taxAmount.textContent = "";
@@ -179,11 +161,10 @@ function displayCheckoutReceipt() {
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const provinceTaxRates = {
         Ontario: 0.13,
-        Alberta: 0.05,     // Alberta has a 5% tax rate
-        BritishColumbia: 0.07, // British Columbia has a 7% tax rate
-        // Add tax rates for other provinces/territories here
+        Alberta: 0.05,
+        BritishColumbia: 0.07,
+        Saskatchewan: 0.06,
     };
-
 
     const selectedProvince = checkoutDetails.province;
     const salesTaxRate = provinceTaxRates[selectedProvince] || 0;
@@ -209,7 +190,6 @@ function displayCheckoutReceipt() {
         cartItemsList.appendChild(listItem);
     });
 
-    // Display cart total on the receipt
     if (checkoutDetails) {
         document.getElementById("checkoutName").textContent = checkoutDetails.name;
         document.getElementById("checkoutPhone").textContent = checkoutDetails.phone;
@@ -220,42 +200,20 @@ function displayCheckoutReceipt() {
         document.getElementById("checkoutEmail").textContent = checkoutDetails.email;
     }
 
-    // Calculate and display the total
-    // if (cartItems) {
-    //     const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-    //     cartTotal.textContent = total;
-    // }
-
-    // Display the tax amount on the receipt
-    //         taxAmount.textContent = `$${salesTax.toFixed(2)}`;
-
-    //    // Display the subtotal, sales tax, and total on the receipt
-    //    cartTotal.textContent = `Subtotal: $${subtotal.toFixed(2)}<br>Tax (${selectedProvince}): $${salesTax.toFixed(2)}<br>Total: $${total.toFixed(2)}`;
-
+    // display subtotal
     subTotal.textContent = `${subtotal.toFixed(2)}`
-    // Display the tax amount on the receipt
-    //taxAmount.textContent = `${salesTax.toFixed(2)}`;
 
-    // taxAmount.textContent = `(${selectedProvince}): $${salesTax.toFixed(2)}`;
+    // display taxAmount
     taxAmount.textContent = `${selectedProvince}: $${salesTax.toFixed(2)}`;
 
-
-
-
-
-    // Display the subtotal, sales tax, and total on the receipt
+    // Display the cartTotal
     cartTotal.textContent = `${total.toFixed(2)}`;
 }
 
-
+// Clear local storage
 function Ok() {
-    // Clear local storage
     localStorage.removeItem("cart");
-    // localStorage.removeItem("formDetails");
-
-    // Close the window
     window.close();
 }
 
-// Call the function when the page loads
 document.addEventListener("DOMContentLoaded", displayCheckoutReceipt);

@@ -1,27 +1,23 @@
-/* Apply some basic styling to the body of the receipt */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    border-radius: 50%; /* Makes the body circular */
-    background-color: #FFF; /* Set the background color */
+    border-radius: 50%;
+    background-color: #FFF;
 }
 
-/* Style the main heading */
 h1 {
     font-size: 24px;
     color: #333;
-    text-align: center; /* Center the heading */
+    text-align: center;
 }
 
-/* Style the headings for cart items and checkout details */
 h2 {
     font-size: 18px;
     margin-top: 20px;
-    text-align: center; /* Center the headings */
+    text-align: center;
 }
 
-/* Style the list of cart items */
 ul {
     list-style: none;
     padding: 0;
@@ -30,19 +26,19 @@ ul {
 li {
     font-size: 16px;
     margin-bottom: 8px;
-    text-align: center; /* Center the list items */
+    text-align: center;
 }
 
-/* Style the checkout details */
 p {
     font-size: 16px;
-    text-align: center; /* Center the details */
+    text-align: center;
 }
+
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh; /* Adjust this value to control the vertical positioning */
+    height: 10vh;
 }
 
 #okButton {
@@ -56,10 +52,10 @@ p {
 #okButton:hover {
     background-color: #45a049;
 }
-/* Style the total amount */
+
 #cartTotal {
     font-weight: bold;
     color: #FF5733;
     font-size: 20px;
-    text-align: center; /* Center the total amount */
+    text-align: center;
 }
