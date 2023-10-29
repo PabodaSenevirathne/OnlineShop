@@ -13,14 +13,22 @@ function validateForm() {
     const expmonth = document.getElementById("expmonth").value;
     const expyear = document.getElementById("expyear").value;
     const cvv = document.getElementById("cvv").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Define regular expressions for validation
+    // Add a check to compare 'Password' and 'Confirm Password'
+    if (password !== confirmPassword) {
+        displayErrorMessage("passwordValidationError", "Password and Confirm Password must match.");
+        return false;
+    }
+
+    // regular expressions for validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    const cardNumberPattern = /^[0-9]{16}$/;
-    // const expirationDatePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    const monthPattern = /^(0[1-9]|1[0-2])$/;
-    const yearPattern = /^\d{2}$/;
+    const cardNumberPattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+    const monthPattern = /^(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)$/;
+    const yearPattern = /^\d{4}$/;
     const cvvPattern = /^\d{3}$/;
+
     let isValid = true;
     if (name.trim() === "") {
         displayErrorMessage("nameValidationError", "Please enter your name.");
@@ -43,20 +51,17 @@ function validateForm() {
     } else if (!emailPattern.test(email)) {
         displayErrorMessage("emailValidationError", "Please enter a valid email address.");
         return false;
-    }else if (cname.trim() === "") {
-            displayErrorMessage("cnameValidationError", "Please enter name in the card.");
-            return false;
-    } else if (!cardNumberPattern.test(ccnum)) {
-        displayErrorMessage("ccnumValidationError","Please enter a valid 16-digit card number.");
+    } else if (cname.trim() === "") {
+        displayErrorMessage("cnameValidationError", "Please enter name in the card.");
         return false;
-        // } else if (!expirationDatePattern.test(expmonth)) {
-        //     displayErrorMessage("Please enter a valid expiration date (MM/YY).");
-        //     return false;
+    } else if (!cardNumberPattern.test(ccnum)) {
+        displayErrorMessage("ccnumValidationError", "Please enter a valid 16-digit card number.");
+        return false;
     } else if (!monthPattern.test(expmonth)) {
-        displayErrorMessage("expmonthValidationError","Please enter a valid expiration Month.");
+        displayErrorMessage("expmonthValidationError", "Please enter a valid expiration Month.");
         return false;
     } else if (!yearPattern.test(expyear)) {
-        displayErrorMessage("expyearValidationError","Please enter a valid expiration Year.");
+        displayErrorMessage("expyearValidationError", "Please enter a valid expiration Year.");
         return false;
     } else if (!cvvPattern.test(cvv)) {
         displayErrorMessage("cvvValidationError", "Please enter a valid 3-digit CVV.");
@@ -65,19 +70,28 @@ function validateForm() {
     if (isValid) {
         saveFormDetailsToLocalStorage();
         alert("Your order has been placed! Thank you for shopping with us.");
-    //    openPopupWindow();
-       
+        //    openPopupWindow();
+
     }
 
     return isValid;
 
 
-    
-}
 
-// function displayErrorMessage(message) {
-//     document.getElementById("demo").innerHTML = message;
-// }
+
+    // Add a check to compare 'Password' and 'Confirm Password'
+    if (password !== confirmPassword) {
+        displayErrorMessage("passwordValidationError", "Password and Confirm Password must match.");
+        return false;
+    }
+
+    // Rest of your validation logic...
+
+    return true;
+
+
+
+}
 
 function displayErrorMessage(id, message) {
     document.getElementById(id).innerHTML = message;
@@ -89,13 +103,10 @@ function clearErrorMessages() {
     for (const element of errorElements) {
         element.innerHTML = "";
     }
-
-
-
 }
 
 function openPopupWindow() {
-    var popupURL = "reciept.html"; // Replace with the actual URL
+    var popupURL = "reciept.html";
     var width = 800;
     var height = 800;
     var left = (screen.width - width) / 2;

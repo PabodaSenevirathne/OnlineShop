@@ -57,27 +57,27 @@
     <h2>Checkout Details</h2>
     <form id="checkoutForm" onsubmit="return validateForm();">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
+        <input type="text" id="name" name="name" required><br><br>
         <span id="nameValidationError" class="error"></span><br><br>
 
         <label for="phone">Phone:</label>
-        <input type="phone" id="phone" name="phone"><br><br>
+        <input type="phone" id="phone" name="phone" required><br><br>
         <span id="emailValidationError" class="error"></span><br><br>
 
         <label for="postcode">Postcode:</label>
-        <input type="text" id="postcode" name="postcode"><br><br>
+        <input type="text" id="postcode" name="postcode" required><br><br>
         <span id="postcodeValidationError" class="error"></span><br><br>
 
         <label for="address">Address:</label>
-        <input type="text" id="address" name="address"><br><br>
+        <input type="text" id="address" name="address" required><br><br>
         <span id="addressValidationError" class="error"></span><br><br>
 
         <label for="city">City:</label>
-        <input type="text" id="city" name="city"><br><br>
+        <input type="text" id="city" name="city" required><br><br>
         <span id="cityValidationError" class="error"></span><br><br>
 
         <label for="province">Province:</label>
-        <input type="text" id="province" name="province"><br><br>
+        <input type="text" id="province" name="province" required><br><br>
         <span id="provinceValidationError" class="error"></span><br><br>
 
         <label for="email">Email:</label>
@@ -117,19 +117,33 @@
                 <span id="cvvValidationError" class="error"></span><br><br>
             </div>
             <div class="col-50">
-            <label for="fname">Accepted Cards</label>
+                <label for="fname">Accepted Cards</label>
 
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <br>
+                <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+                <br>
             </div>
         </div>
 
-      
+
+        <div class="row">
+            <div class="col-50">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <span id="passwordValidationError" class="error"></span><br><br>
+            </div>
+            <div class="col-50">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span id="confirmPasswordValidationError" class="error"></span><br><br>
+            </div>
+        </div>
+
+
 
         <button type="submit" id="checkoutButton" onclick="return validateForm()">Proceed to Checkout</button>
         <button id="printReceipt" onclick="openPopupWindow()">Print</button> <br><br>
