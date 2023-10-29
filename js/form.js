@@ -19,7 +19,7 @@ function validateForm() {
 
     //compare 'Password' and 'Confirm Password'
     if (password !== confirmPassword) {
-        displayErrorMessage("passwordValidationError", "Password and Confirm Password must match.");
+        displayErrorMessage("confirmPasswordValidationError", "Password and Confirm Password must match.");
         return false;
     }
 
